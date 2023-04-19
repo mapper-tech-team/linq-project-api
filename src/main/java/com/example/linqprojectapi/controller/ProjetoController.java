@@ -18,7 +18,7 @@ public class ProjetoController {
         return projetoService.obterTodosProjetos();
     }
 
-    @PostMapping("/cadastrar")
+    @PostMapping("/cadastrarProjeto")
     public Projeto cadastrarProjeto(@RequestBody Projeto projeto) {
         return projetoService.cadastrarProjeto(projeto);
     }

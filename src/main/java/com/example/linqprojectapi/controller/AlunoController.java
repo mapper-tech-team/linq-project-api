@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController(value = "aluno")
+@RestController
 public class AlunoController {
 
     @Autowired
     private AlunoService alunoService;
 
-    @PostMapping("/cadastrar")
+    @PostMapping("/cadastrarAluno")
     public Aluno cadastrarAluno(@RequestBody Aluno aluno) {
         return alunoService.cadastrarAluno(aluno);
     }
