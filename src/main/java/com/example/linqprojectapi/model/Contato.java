@@ -2,29 +2,29 @@ package com.example.linqprojectapi.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
-@Table(name = "pessoas")
-public class Pessoa {
+public class Contato {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 100)
-    private String nome;
+    @Column
+    private String tipoContato;
 
-    @Column(nullable = false)
-    private String email;
+    @Column
+    private String descContato;
 
-    @Column(nullable = false, length = 8)
-    private String senha;
+    @ManyToOne
+    @JoinColumn(name = "projeto_id", nullable = false)
+    private Projeto projeto;
 
 }

@@ -1,5 +1,6 @@
 package com.example.linqprojectapi.controller;
 
+import com.example.linqprojectapi.dto.ProjetoDTO;
 import com.example.linqprojectapi.model.Projeto;
 import com.example.linqprojectapi.service.ProjetoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/projeto")
 public class ProjetoController {
 
     @Autowired
@@ -18,8 +20,8 @@ public class ProjetoController {
         return projetoService.obterTodosProjetos();
     }
 
-    @PostMapping("/cadastrarProjeto")
-    public Projeto cadastrarProjeto(@RequestBody Projeto projeto) {
+    @PostMapping("/cadastrar")
+    public Projeto cadastrarProjeto(@RequestBody ProjetoDTO projeto) {
         return projetoService.cadastrarProjeto(projeto);
     }
 
