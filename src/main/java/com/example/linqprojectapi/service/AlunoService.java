@@ -4,6 +4,7 @@ import com.example.linqprojectapi.dto.AlunoDTO;
 import com.example.linqprojectapi.exception.CustomNotFoundException;
 import com.example.linqprojectapi.model.Aluno;
 import com.example.linqprojectapi.repository.AlunoRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,11 +44,13 @@ public class AlunoService {
                 new CustomNotFoundException("Aluno com id " + id + " não encontrado."));
     }
 
+    @Transactional
     public void removerAluno(Long id) {
         Aluno aluno = findById(id);
         alunoRepository.delete(aluno);
     }
 
+    @Transactional
     public Aluno atualizarAluno(Long id,  AlunoDTO alunoDTO) {
         Aluno aluno = findById(id);
         aluno.setNome(alunoDTO.getNome());
