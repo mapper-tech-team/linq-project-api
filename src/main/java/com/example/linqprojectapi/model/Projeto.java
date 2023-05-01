@@ -1,6 +1,7 @@
 package com.example.linqprojectapi.model;
 
 import com.example.linqprojectapi.enums.StatusEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -41,6 +42,7 @@ public class Projeto {
 
     @ManyToOne
     @JoinColumn(name = "aluno_id", nullable = false)
+    @JsonIgnore
     private Aluno aluno;
 
     @Column(nullable = false)

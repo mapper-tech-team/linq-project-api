@@ -1,6 +1,8 @@
 package com.example.linqprojectapi.dto;
 
 import com.example.linqprojectapi.enums.StatusEnum;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,6 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class ProjetoDTO {
+
+    private Long id;
 
     private String nome;
 
