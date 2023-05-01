@@ -4,14 +4,15 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
+import lombok.experimental.SuperBuilder;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Table(name = "pessoas")
+@SuperBuilder
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Pessoa {
 
     @Id

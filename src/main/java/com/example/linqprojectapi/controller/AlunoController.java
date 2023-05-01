@@ -1,21 +1,48 @@
 package com.example.linqprojectapi.controller;
 
+import com.example.linqprojectapi.dto.AlunoDTO;
 import com.example.linqprojectapi.model.Aluno;
 import com.example.linqprojectapi.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
+import java.util.List;
+
+@RestController()
+@RequestMapping("/aluno")
 public class AlunoController {
 
     @Autowired
     private AlunoService alunoService;
 
-    @PostMapping("/cadastrarAluno")
-    public Aluno cadastrarAluno(@RequestBody Aluno aluno) {
-        return alunoService.cadastrarAluno(aluno);
+    @GetMapping("/obter")
+    public List<AlunoDTO> obterTodosAlunos() {
+        return alunoService.obterTodosAlunos();
+    }
+
+    @PostMapping("/cadastrar")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Aluno cadastrarAluno(@RequestBody AlunoDTO alunoDTO) {
+        return alunoService.cadastrarAluno(alunoDTO);
+    }
+
+    @DeleteMapping("/deletar/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void removerAluno(@PathVariable("id") Long id) {
+        alunoService.removerAluno(id);
+    }
+
+    @PutMapping("/atualizar/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Aluno atualizarAluno(@PathVariable("id") Long id, @RequestBody AlunoDTO alunoDTO) {
+        return alunoService.atualizarAluno(id, alunoDTO);
+    }
+
+    @GetMapping("/obter/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public AlunoDTO obterAlunoPorId(@PathVariable("id") Long id) {
+        return alunoService.obterAlunoPorId(id);
     }
 
 }
