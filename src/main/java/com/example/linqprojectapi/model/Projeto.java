@@ -1,8 +1,10 @@
 package com.example.linqprojectapi.model;
 
 import com.example.linqprojectapi.enums.StatusEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +15,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Projeto {
 
     @Id
@@ -34,11 +37,12 @@ public class Projeto {
     @Column
     private String documentacao;
 
-    @Column
-    private List<String> contatos;
+    @OneToMany(mappedBy = "projeto")
+    private List<Contato> contatos;
 
     @ManyToOne
     @JoinColumn(name = "aluno_id", nullable = false)
+    @JsonIgnore
     private Aluno aluno;
 
     @Column(nullable = false)
