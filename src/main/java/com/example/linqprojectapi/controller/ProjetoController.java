@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/projeto")
+@CrossOrigin(origins = "*")
 public class ProjetoController {
 
     @Autowired

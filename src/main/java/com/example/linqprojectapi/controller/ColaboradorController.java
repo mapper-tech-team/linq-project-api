@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/colaborador")
+@CrossOrigin(origins = "*")
 public class ColaboradorController {
     @Autowired
     private ColaboradorService colaboradorService;
