@@ -5,6 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -27,5 +31,12 @@ public class Pessoa {
 
     @Column(nullable = false, length = 8)
     private String senha;
+
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime dataCriacao;
+
+    @UpdateTimestamp
+    private LocalDateTime dataEdicao;
 
 }

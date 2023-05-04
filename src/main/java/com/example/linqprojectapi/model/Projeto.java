@@ -7,7 +7,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -47,5 +50,12 @@ public class Projeto {
 
     @Column(nullable = false)
     private StatusEnum status;
+
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime dataCriacao;
+
+    @UpdateTimestamp
+    private LocalDateTime dataEdicao;
 
 }

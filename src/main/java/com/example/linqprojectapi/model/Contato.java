@@ -6,6 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -28,5 +32,12 @@ public class Contato {
     @JoinColumn(name = "projeto_id", nullable = false)
     @JsonIgnore
     private Projeto projeto;
+
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime dataCriacao;
+
+    @UpdateTimestamp
+    private LocalDateTime dataEdicao;
 
 }

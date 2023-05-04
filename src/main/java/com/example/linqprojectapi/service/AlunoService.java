@@ -35,6 +35,8 @@ public class AlunoService {
                 .email(a.getEmail())
                 .ra(a.getRa())
                 .isAlumni(a.getIsAlumni())
+                .dataCriacao(a.getDataCriacao())
+                .dataAtualizacao(a.getDataEdicao())
                 .build())
                 .toList();
     }
