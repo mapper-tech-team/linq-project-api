@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,5 +21,7 @@ public class AlunoDTO {
     private String senha;
     private Long ra;
     private Boolean isAlumni;
+    private LocalDateTime dataCriacao;
+    private LocalDateTime dataAtualizacao;
 
 }
