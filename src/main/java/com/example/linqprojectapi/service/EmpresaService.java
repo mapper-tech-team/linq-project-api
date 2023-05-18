@@ -2,6 +2,7 @@ package com.example.linqprojectapi.service;
 
 import com.example.linqprojectapi.dto.ColaboradorDTO;
 import com.example.linqprojectapi.dto.EmpresaDTO;
+import com.example.linqprojectapi.enums.PerfilEnum;
 import com.example.linqprojectapi.exception.CustomNotFoundException;
 import com.example.linqprojectapi.model.Colaborador;
 import com.example.linqprojectapi.model.Empresa;
@@ -18,12 +19,14 @@ public class EmpresaService {
     @Autowired
     private EmpresaRepository empresaRepository;
 
+    @Transactional
     public Empresa cadastrarEmpresa(EmpresaDTO empresaDTO) {
         return empresaRepository.save(Empresa.builder()
                 .nome(empresaDTO.getNome())
                 .email(empresaDTO.getEmail())
                 .senha(empresaDTO.getSenha())
                 .cnpj(empresaDTO.getCnpj())
+                .perfil(PerfilEnum.EMPRESA)
                 .build());
     }
 
@@ -57,5 +60,15 @@ public class EmpresaService {
                 .email(empresa.getEmail())
                 .cnpj(empresa.getCnpj())
                 .build();
+    }
+
+    @Transactional
+    public Empresa atualizarEmpresa(Long id, EmpresaDTO empresaDTO) {
+        Empresa empresa = findById(id);
+        empresa.setNome(empresaDTO.getNome());
+        empresa.setEmail(empresaDTO.getEmail());
+        empresa.setSenha(empresaDTO.getSenha());
+        empresa.setCnpj(empresaDTO.getCnpj());
+        return empresa;
     }
 }

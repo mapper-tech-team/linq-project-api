@@ -1,6 +1,7 @@
 package com.example.linqprojectapi.service;
 
 import com.example.linqprojectapi.dto.AlunoDTO;
+import com.example.linqprojectapi.enums.PerfilEnum;
 import com.example.linqprojectapi.exception.CustomNotFoundException;
 import com.example.linqprojectapi.model.Aluno;
 import com.example.linqprojectapi.repository.AlunoRepository;
@@ -24,6 +25,7 @@ public class AlunoService {
             .senha(alunoDTO.getSenha())
             .ra(alunoDTO.getRa())
             .isAlumni(alunoDTO.getIsAlumni())
+            .perfil(PerfilEnum.ALUNO)
             .build());
     }
 

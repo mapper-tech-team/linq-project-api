@@ -41,4 +41,10 @@ public class ColaboradorController {
     public ColaboradorDTO obterColaboradorPorId(@PathVariable("id") Long id) {
         return colaboradorService.obterColaboradorPorId(id);
     }
+
+    @PutMapping("/editar/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Colaborador editarColaborador(@PathVariable("id") Long id, @RequestBody ColaboradorDTO colaboradorDTO) {
+        return colaboradorService.atualizarColaborador(id, colaboradorDTO);
+    }
 }
