@@ -1,9 +1,14 @@
 package com.example.linqprojectapi.enums;
 
-public enum PerfilEnum {
-    ALUNO("aluno"), COLABORADOR("colaborador"), EMPRESA("empresa");
+import lombok.Getter;
 
-    private String perfil;
+@Getter
+public enum PerfilEnum {
+    ALUNO("aluno"),
+    COLABORADOR("colaborador"),
+    EMPRESA("empresa");
+
+    private final String perfil;
 
     PerfilEnum(String perfil) {
         this.perfil = perfil;
