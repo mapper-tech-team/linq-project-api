@@ -43,4 +43,10 @@ public class EmpresaController {
     public EmpresaDTO obterEmpresaPorId(@PathVariable("id") Long id) {
         return empresaService.obterEmpresaPorId(id);
     }
+
+    @PutMapping("/editar/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Empresa atualizarEmpresa(@PathVariable("id") Long id, @RequestBody EmpresaDTO empresaDTO) {
+        return empresaService.atualizarEmpresa(id, empresaDTO);
+    }
 }

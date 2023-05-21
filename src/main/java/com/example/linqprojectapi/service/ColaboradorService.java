@@ -2,6 +2,7 @@ package com.example.linqprojectapi.service;
 
 import com.example.linqprojectapi.dto.AlunoDTO;
 import com.example.linqprojectapi.dto.ColaboradorDTO;
+import com.example.linqprojectapi.enums.PerfilEnum;
 import com.example.linqprojectapi.exception.CustomNotFoundException;
 import com.example.linqprojectapi.model.Aluno;
 import com.example.linqprojectapi.model.Colaborador;
@@ -17,12 +18,14 @@ public class ColaboradorService {
     @Autowired
     private ColaboradorRepository colaboradorRepository;
 
+    @Transactional
     public Colaborador cadastrarColaborador(ColaboradorDTO colaboradorDTO) {
         return colaboradorRepository.save(Colaborador.builder()
                 .nome(colaboradorDTO.getNome())
                 .email(colaboradorDTO.getEmail())
                 .senha(colaboradorDTO.getSenha())
                 .cargo(colaboradorDTO.getCargo())
+                .perfil(PerfilEnum.COLABORADOR)
                 .build());
     }
 
@@ -48,7 +51,6 @@ public class ColaboradorService {
         colaboradorRepository.delete(colaborador);
     }
 
-
     public ColaboradorDTO obterColaboradorPorId(Long id) {
         Colaborador colaborador = findById(id);
         return ColaboradorDTO.builder()
@@ -57,5 +59,15 @@ public class ColaboradorService {
                 .email(colaborador.getEmail())
                 .cargo(colaborador.getCargo())
                 .build();
+    }
+
+    @Transactional
+    public Colaborador atualizarColaborador(Long id, ColaboradorDTO colaboradorDTO) {
+        Colaborador colaborador = findById(id);
+        colaborador.setNome(colaboradorDTO.getNome());
+        colaborador.setEmail(colaboradorDTO.getEmail());
+        colaborador.setCargo(colaboradorDTO.getCargo());
+        colaborador.setSenha(colaboradorDTO.getSenha());
+        return colaborador;
     }
 }

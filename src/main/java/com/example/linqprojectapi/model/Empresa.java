@@ -16,7 +16,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
-public class Empresa extends Pessoa{
+public class Empresa extends Pessoa {
     @Column(nullable = false, length = 14)
     private String cnpj;
 }
