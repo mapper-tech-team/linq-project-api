@@ -3,6 +3,7 @@ package com.example.linqprojectapi.controller;
 import com.example.linqprojectapi.dto.AlunoDTO;
 import com.example.linqprojectapi.model.Aluno;
 import com.example.linqprojectapi.service.AlunoService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController()
 @RequestMapping("/aluno")
+@SecurityRequirement(name = "Bearer Authentication")
 @CrossOrigin(origins = "*")
 public class AlunoController {
 

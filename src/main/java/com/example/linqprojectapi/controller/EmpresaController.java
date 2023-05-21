@@ -7,6 +7,7 @@ import com.example.linqprojectapi.model.Colaborador;
 import com.example.linqprojectapi.model.Empresa;
 import com.example.linqprojectapi.service.ColaboradorService;
 import com.example.linqprojectapi.service.EmpresaService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/empresa")
+@SecurityRequirement(name = "Bearer Authentication")
 @CrossOrigin(origins = "*")
 public class EmpresaController {
     @Autowired

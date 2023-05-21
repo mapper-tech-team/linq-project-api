@@ -3,6 +3,7 @@ package com.example.linqprojectapi.controller;
 import com.example.linqprojectapi.dto.ProjetoDTO;
 import com.example.linqprojectapi.model.Projeto;
 import com.example.linqprojectapi.service.ProjetoService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/projeto")
+@SecurityRequirement(name = "Bearer Authentication")
 @CrossOrigin(origins = "*")
 public class ProjetoController {
 
