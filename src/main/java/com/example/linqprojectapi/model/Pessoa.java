@@ -23,6 +23,13 @@ import java.util.Collection;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Pessoa implements UserDetails {
 
+    public Pessoa(String nome, String email, String senha, PerfilEnum perfil) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.perfil = perfil;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

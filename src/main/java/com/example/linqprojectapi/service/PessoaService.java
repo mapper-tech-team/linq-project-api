@@ -7,10 +7,12 @@ import com.example.linqprojectapi.exception.LoginException;
 import com.example.linqprojectapi.model.Pessoa;
 import com.example.linqprojectapi.repository.PessoaRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +25,21 @@ public class PessoaService implements UserDetailsService {
     private final PessoaRepository pessoaRepository;
     private final PasswordEncoder passwordEncoder;
 
-    Pessoa obterUsuarioPorId(Long id) {
+    Pessoa findById(Long id) {
         return pessoaRepository.findById(id).orElseThrow(() ->
                 new CustomNotFoundException("Pessoa com id " + id + " não encontrada."));
+    }
+
+    public Pessoa findByEmail(String email) {
+        return pessoaRepository.findByEmail(email);
+    }
+
+    PessoaDTO obterPessoaPorId(Long id) {
+        Pessoa pessoa = findById(id);
+        return PessoaDTO.builder()
+                .email(pessoa.getEmail())
+                .perfil(pessoa.getPerfil())
+                .build();
     }
 
     List<PessoaDTO> obterPessoas() {
@@ -56,7 +70,7 @@ public class PessoaService implements UserDetailsService {
                 : new String[] { "USER" };
         return User.builder()
                 .username(pessoa.getEmail())
-                .password(pessoa.getSenha())
+                .password(new BCryptPasswordEncoder().encode(pessoa.getPassword()))
                 .roles(roles)
                 .build();
     }
